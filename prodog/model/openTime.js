@@ -9,12 +9,12 @@ module.exports = {
     },
     {
       name: 'BeginDate',
-      type: 'Number',
+      type: 'String',
       not_null: true
     },
     {
       name: 'EndDate',
-      type: 'Number',
+      type: 'String',
       not_null: true
     }
   ]
