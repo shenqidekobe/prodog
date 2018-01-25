@@ -1,0 +1,17 @@
+{
+  "name": "Propitious Dog",
+  "link": "https://fajiayun.com/dapp.zip",
+  "category": 1,
+  "description": "the encrypted zodiac collection application, is developed based on the Asch Chain platform, including purchase",
+  "tags": "asch,dog",
+  "icon": "https://fajiayun.com/res/img/logo@3x.png",
+  "delegates": [
+    "736ce7e5312bca36706b266f3ca1a350a621ae51e21394acd71edc865f62057e",
+    "2da732c242f799689d492e3edbcb8ae4cdfce0b340c553aea247312c10ce718c",
+    "0ac4d8120bf63cfae6cccb0f33e4ddb16a4729979c79bc1494fe6e5e31128d61",
+    "7f1f3fefbb9436a980399a8b3f552035e36261475936acb794e917e16518755f",
+    "c1598ba26f9e7d68021e853e789b719781a194f124f6e8c92ffe9f3a4a97f86c"
+  ],
+  "unlockDelegates": 3,
+  "type": 0
+}
