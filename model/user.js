@@ -26,9 +26,11 @@ module.exports = {
 	    default: 0
 	}, {
 		name : 'createtime',
-		type : 'DATETIME'
+		type : 'String',
+		length : 128
 	}, {
-		name : 'logintime',
-		type : 'DATETIME'
+		name : 'nickname',
+		type : 'String',
+		length : 64
 	} ]
 }
