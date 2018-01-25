@@ -1,12 +1,12 @@
 module.exports = {
-  postDog: async function (nickname, amount, piccode, picurl,owner) {
-    if (!piccode) {
-      return '9996  Should not isnull piccode and piccode'
+  postDog: async function (nickname, amount, picode, picurl,owner) {
+    if (!picode) {
+      return ' Should not isnull picode'
     }
 
-    if (piccode) {
-      app.sdb.lock('postDog@' + piccode)
-      let exists = await app.model.Dog.exists({ piccode: piccode })
+    if (picode) {
+      app.sdb.lock('postDog@' + picode)
+      let exists = await app.model.Dog.exists({ picode: picode })
       if (exists) {
         return 'piccode already exists'
       }
@@ -15,11 +15,11 @@ module.exports = {
     app.sdb.create('Dog', {
       nickname: nickname||'',
       amount: amount || '',
-      piccode: piccode || '',
+      picode: picode || '',
       picurl: picurl||'',
       id: app.autoID.increment('dog_max_id'),
       owner: owner||'',
-     createtime:'2017-19-19 88:88:88'
+      createtime:(new Date()).toLocaleString()
     })
   }
 }
