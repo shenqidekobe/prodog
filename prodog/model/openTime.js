@@ -8,6 +8,11 @@ module.exports = {
       primary_key: true
     },
     {
+      name: 'day',
+      type: 'String',
+      not_null: true
+    },
+    {
       name: 'BeginDate',
       type: 'String',
       not_null: true

@@ -8,9 +8,10 @@ module.exports = {
       primary_key: true
     },
     {
-      name: 'uId',
-      type: 'Number',
-      not_null: true
+      name: 'uAddress',
+      type : 'String',
+      length : 128,
+      unique : true
     },
     {
       name: 'tId',
@@ -19,7 +20,7 @@ module.exports = {
     },
     {
       name: 'pId',
-      type: 'Number',
+      type: 'Number'
     },
     {
       name: 'level',
