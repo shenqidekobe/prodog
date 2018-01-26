@@ -10,6 +10,7 @@
     $(document).ready(function() {
         var DAPP_ID = window.location.pathname.split('/')[2];
         var BASE_URL = '/api/dapps/' + DAPP_ID;
+        var BASE_URL2 = '/api/dapps/' + DAPP_ID;
         var COUNT_PER_PAGE = 20;
         var State = {
             isLogin: false,
@@ -130,6 +131,44 @@
                 }
             });
         })
+        $('#interBtn').click(function () {
+            var args = $('#terArgs').val().split('\n')
+            var data = JSON.stringify(args)
+            //服务器端签名交易(unsigned)
+            console.log('interBtn', BASE_URL2 + '/users/update')
+            $.ajax({
+                type: 'POST',
+                url: BASE_URL2 + '/users/update',
+                data: data,
+                dataType: 'json',
+                success: function(ret) {
+                    console.log(ret);
+                    if (!ret.success) {
+                        alert('Error: ' + ret.error);
+                        return;
+                    }
+                }
+            });
+        })
+         $('#delBtn').click(function () {
+            var args = $('#delArgs').val().split('\n')
+            var data = JSON.stringify(args)
+            //服务器端签名交易(unsigned)
+            console.log('interBtn', BASE_URL2 + '/users/del')
+            $.ajax({
+                type: 'POST',
+                url: BASE_URL2 + '/users/del',
+                data: data,
+                dataType: 'json',
+                success: function(ret) {
+                    console.log(ret);
+                    if (!ret.success) {
+                        alert('Error: ' + ret.error);
+                        return;
+                    }
+                }
+            });
+        })
     });
 </script>
 
@@ -146,6 +185,18 @@
             <select id="contractOptions"></select>
             <input type="button" id="invokeBtn" value="GO"><br/>
             <textarea rows="6" cols="60" id="contractArgs" placeholder="nickname=111"></textarea><br/>
+        </div>
+        <hr/>
+        <h2>Update user</h2>
+        <div>
+            <input type="button" id="interBtn" value="GO"><br/>
+            <textarea rows="6" cols="60" id="terArgs" placeholder="address=111"></textarea><br/>
+        </div>
+        <hr/>
+        <h2>Del user</h2>
+        <div>
+            <input type="button" id="delBtn" value="GO"><br/>
+            <textarea rows="6" cols="60" id="delArgs" placeholder="address=111"></textarea><br/>
         </div>
     </div>
 </body>

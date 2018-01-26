@@ -9,15 +9,19 @@ module.exports = {
 	}, {
 		name : 'address',
 		type : 'String',
+		not_null : true,
 		length : 128,
+		index:true,
 		unique : true
 	}, {
 		name : 'publicKey',
 		type : 'String',
+		not_null : true,
 		length : 128
 	}, {
 		name : 'secret',
 		type : 'String',
+		not_null : true,
 		length : 128,
 		index : true
 	}, {
