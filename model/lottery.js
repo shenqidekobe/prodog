@@ -18,17 +18,6 @@ module.exports = {
       not_null: true
     },
     {
-      name: 'status',
-      type: 'String',
-      not_null: true
-      length:"10"
-      default:"unsold"
-    },
-    {
-      name: 'dId',
-      type: 'Number',
-    },
-    {
       name: 'price',
       type: 'Number',
       default: 5
