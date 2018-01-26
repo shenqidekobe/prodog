@@ -1,3 +1,5 @@
+let dateUtils = require('./lib/date-utils.min')
+
 module.exports = async function () {
   app.logger.info('enter dapp init')
 

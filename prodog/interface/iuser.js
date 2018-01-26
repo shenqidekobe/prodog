@@ -1,12 +1,18 @@
-async function getUsers(options) {
-  let count = await app.model.User.count( {id:{$lt:options.count||5}})
+function isDefined(x) {
+  return typeof x !== 'undefined'
+}
+
+async function getUsers(query) {
+  let condition = {}
+  if (isDefined(query.address)) condition.address = query.address
+  if (isDefined(query.secret)) condition.secret = query.secret
+  
+  let count = await app.model.User.count(condition)
   let users = await app.model.User.findAll({
-    condition: {
-      id: { $lt: options.count||5 }
-    },
+    condition: condition,
     limit: options.limit || 50,
     offset: options.offset || 0,
-    sort:{id:-1}
+    sort: { id : -1 }
   })
   return { count: count, users: users }
 }
@@ -14,12 +20,7 @@ async function getUsers(options) {
 app.route.get('/users', async (req) => {
   let query = req.query
   let key = ['/users', query.sortBy, query.limit, query.offset,query.count].join('_')
-  let res = null
-  if (query.sortBy === 'id') {
-    res = await getUsers(query)
-  } else {
-    throw new Error('Sort field not supported')
-  }
+  let res = getUsers(query)
   return res
 })
 
