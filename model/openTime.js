@@ -8,19 +8,19 @@ module.exports = {
       primary_key: true
     },
     {
-      name: 'day',
+      name: 'tDay',
       type: 'String',
-      not_null: true
+      length:20
     },
     {
       name: 'BeginDate',
       type: 'String',
-      not_null: true
+      length:20
     },
     {
       name: 'EndDate',
       type: 'String',
-      not_null: true
+      length:20
     }
   ]
 }
