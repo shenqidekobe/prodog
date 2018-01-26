@@ -8,10 +8,10 @@ module.exports = {
       primary_key: true
     },
     {
-      name: 'uAddress',
+      name: 'secret',
       type : 'String',
-  		length : 128,
-  		unique : true
+      length : 128,
+      not_null : true
     },
     {
       name: 'tId',
