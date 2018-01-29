@@ -1,0 +1,73 @@
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,fieldset,th,td,pre,textarea,legend,input,button,p{margin:0;padding:0}
+html,body{max-width:750px;min-height:100%;width:100%;height:100%;overflow-x:hidden;font-family:'PingFang-SC-Regular','\5FAE\8F6F\96C5\9ED1','Helvetica Neue',Helvetica,'PingFang SC',Arial,sans-serif;margin:0 auto}
+body{-webkit-overflow-scrolling:touch}
+input[type="button"],input[type="submit"],input[type="reset"],.textarea{-webkit-appearance:none;border-radius:0}
+input[type="email"],input[type="search"]{-webkit-appearance:caret;-moz-appearance:caret;}
+/*在chrome下： number箭头按钮*/
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none !important}
+/*Firefox下：*/
+input[type="number"]{-moz-appearance:textfield}
+textarea{resize: none;}
+li{list-style: none;}
+*{box-sizing: border-box;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;tap-highlight-color:transparent}
+a{text-decoration: none;}
+.underline{text-decoration: underline;}
+.cursor,button,.f-click{cursor:pointer}
+img{max-width:100%;vertical-align:top}
+.bolber{font-weight:bolder}
+.bold-normal{font-weight:normal !important}
+.clearfix{*zoom:1}
+.clearfix:after{content:"";clear:both;display:table;height:0;font-size:0;overflow:hidden}
+.clear{clear:both;font-size:0;line-height:0}
+.none{display:none}
+.block{display:block !important}
+.fl,.g-c2-float>.hd,[class*='g-col-'],.fl-li>li,[class*="li-c"]>li{float:left}
+.fr,.g-c2-right>.hd,.g-c2-float.float-r>.bd{float:right !important}
+.g-c2-hd{margin-right:10px}
+.g-c2-right>.hd{margin-right:auto;margin-left:10px}
+.g-c2-bd{overflow:hidden}
+.g-col-4,.li-c4>li{width:25%}
+.g-col-3,.li-c3>li{width:33.3%}
+.g-col-2,.li-c2>li{width:50%}
+.g-col-1,.li-c1>li{float:none}
+.tal{text-align:left}
+.tar{text-align:right}
+.tac{text-align:center}
+.por{position:relative}
+.poa{position:absolute}
+.block-a>a{display:block}
+.radius-50{border-radius:50%;overflow:hidden;display:block;height:100%}
+.radius-50 img{border-radius:50%}
+.m-card{}
+.m-card-header.m-card-media .m-media-body{}
+input,button,textarea{outline: none;border: 0;    vertical-align: top;font-family:'PingFang-SC-Regular';}
+.ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* \5FAE\8F6F\96C5\9ED1 "Microsoft YaHei"*/
+.fixed{position: fixed;z-index: 999;}
+.bottom{bottom:0;left:0;}
+.flex{display:flex;flex-wrap:wrap;}
+.flex-1{flex: 1;position: relative;}
+.column{flex-direction: column;}
+.space-between{justify-content: space-between;}
+.gybtn{width:120px;display:inline-block;height:40px;line-height:40px;background:#53A1F3;text-align:center;color:#fff !important;border-radius:3px}
+
+
+.imgSize-box{position:relative;}
+.imgSize-tit{position: absolute;    left: 50%;
+    top: 50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);}
+
+
+/*公用弹框*/
+.new-popw{width:6.6rem;min-height:4.5rem;background:#fff;border-radius:.4rem .4rem 0px 0px;position:absolute;left:50%;top:50%;margin:-2.25rem 0 0 -3.3rem;z-index:99999;display:none}
+.new-popw .nl-tit{height:1.32rem;line-height:1.32rem;text-align:center;color:#fc613e;font-size:16px;font-weight:bold}
+.new-popw .nl-txt{height:2rem;line-height:.5333rem;font-size:14px;color:black;padding:.2rem .5333rem;border:1px solid #d6d7dc;border-width:2px 0 1px 0}
+.nl-btn{height:1rem;line-height:1rem;text-align:center;color:#495eff;font-size:.4rem}
+.nl-btn span{display:block;border-right:1px solid #d6d7dc}
+.nl-btn li:nth-child(2n) span{border:none}
+.li-c2 li,.list-c2 .cspw-list,.li-c2 .product-list{width:50%;*width:49.8%;float:left;overflow:hidden}
+.register20160419 .du-placeholder{width:70%;overflow:visible;vertical-align:top}
+.new-plac{position:relative;z-index:1;display:inline-block;width:100%;vertical-align:top;;margin:0 auto 0.4rem
+}
+.msg-err{position:absolute;left:0;top:100%;line-height:16px}
+.cf00,.c-f00{color:#f00 !important}
+.m-popbg{position:fixed;top:0px;left:0px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop));width:100%;height:100%;z-index:10000;background:#000;background-color:rgba(0,0,0,.3);display:none}
