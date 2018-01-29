@@ -95,4 +95,8 @@ $(function(){
 			
 		});
 	});
+	serverHTTP('user/list',{page:1,pageSize:10},function(data){
+	  var html = $(template("LIST", data));
+      $(".dataList").html(html);
+	});
 });
