@@ -17,7 +17,7 @@ $(function(){
 	    });
     }
 	function isLogin(){return store.getItem(UK)!=null;}
-	function userInfo(){return store.getItem(UK);}
+	function getUser(){return store.getItem(UK);}
 	function serverHTTP(pathsuffix,args,callback){
 		jsonAjax.post({
 			url:SERVER_URL+pathsuffix,
@@ -35,7 +35,7 @@ $(function(){
 	}
 	function invokeASCH(type,fee,args,callback){
         let data = {
-            secret: userInfo().secret,
+            secret: getUser().secret,
             fee: fee||'10000000',
             type: type,
             args: args
@@ -85,13 +85,13 @@ $(function(){
 		var email=$.trim($("#bindEmail").val());
 		var nickname=$.trim($("#bindNickname").val());
 		if(email)return;
-		serverHTTP('user/bindEmail',{id:userInfo().id,email:email,nickname:nickname},function(rsp){
+		serverHTTP('user/bindEmail',{id:getUser().id,email:email,nickname:nickname},function(rsp){
 			
 		});
 	});
 	$("#lotteryBackBtn,#lotteryBackBtn1,#lotteryBackBtn2").click(function(){location.href='lottery.html'});
 	$("#goLotteryBtn").click(function(){
-		serverHTTP('lottery/start',{userId:userInfo().id},function(rsp){
+		serverHTTP('lottery/start',{userId:getUser().id},function(rsp){
 			
 		});
 	});
