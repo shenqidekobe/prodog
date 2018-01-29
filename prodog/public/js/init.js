@@ -96,6 +96,8 @@ $(function(){
 		});
 	});
 	serverHTTP('user/list',{page:1,pageSize:10},function(data){
+	  data=JSON.parse(data);
+	  data={list:data};
 	  var html = $(template("LIST", data));
       $(".dataList").html(html);
 	});
