@@ -14,7 +14,7 @@ module.exports = {
         not_null: true
     },
     {
-      name: 'nickname',
+      name: 'nickname',//昵称
       type: 'String',
       length: 64,
       unique: true
@@ -24,7 +24,7 @@ module.exports = {
       type: 'Number'
     },
     {
-      name: 'createtime',
+      name: 'createtime',//创建时间
       length:64,
       type: 'String',
       not_null: true

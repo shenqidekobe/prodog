@@ -1,6 +1,8 @@
 $(function(){
 	let SERVER_URL = 'http://47.97.6.82/dogs/api/';
-	let DAPPID = window.location.pathname.split('/')[2];
+	let pathArrs=window.location.pathname.split('/');
+	let DAPPID = pathArrs[2];
+	let typs=pathArrs[3]||'index.html';
     let DAPP_URL = '/api/dapps/' + DAPPID;
     let UK='asch_user_dog_sessionID';
     let store=window.sessionStorage;
@@ -100,5 +102,43 @@ $(function(){
 	  data={list:data};
 	  var html = $(template("LIST", data));
       $(".dataList").html(html);
+	});
+	$(window).load(function(){
+		switch(typs){
+			case "index.html":
+			break;
+			case "info.html":
+			break;
+			case "info_wallet.html":
+			break;
+			case "info_dogs.html":
+			break;
+			case "info_dog_detail.html":
+			break;
+			case "lettory.html":
+			break;
+			case "lettory_yes.html":
+			break;
+			case "market_list.html":
+			break;
+			case "market_detail.html":
+			break;
+			case "market_order.html":
+			break;
+			case "market_order_pay.html":
+			break;
+			case "pair.html":
+			break;
+			case "pair_dogs.html":
+			break;
+			case "bind_email.html":
+			break;
+			case "bind_wallet.html":
+			break;
+			case "buy_list.html":
+			break;
+			case "buy_detail.html":
+			break;
+		}
 	});
 });
