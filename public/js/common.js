@@ -48,7 +48,7 @@ $(function(){
                     alert(rsp.msg);
                     return;
                 }
-    		    let rspJson=rsp.responseJson;
+    		    let rspJson=rsp.data;
     		    console.info(rspJson);
     			callback(rspJson);
     		}
@@ -123,11 +123,20 @@ $(function(){
                     alert(rsp.error);
                     return;
                 }
+    			var bls=rsp.account.balances;
+    			var balances="";
+    			for (var i in balances) {
+                    var balanceInfo = bls[i];
+                    var balance = Number(balanceInfo.balance) / 100000000;
+                    var currency = balanceInfo.currency;
+                    var bc=balance+currency;
+                    balances=balances==''?bc:balances+','+bc;
+                }
     			userInfo.secret = secret;
     			userInfo.publicKey = rsp.account.publicKey;
     			userInfo.address = rsp.account.address;
-    			serverHTTP('user/login',{secret:secret,address:userInfo.address,publicKey:userInfo.publicKey},function(rsp){
-    				userInfo.id=rsp.id;
+    			serverHTTP('user/login',{secret:secret,address:userInfo.address,publicKey:userInfo.publicKey,balances:balances},function(isp){
+    				userInfo.id=isp.id;
     				store.setItem(UK,userInfo);
     				location.href='index.html';
     			});
@@ -141,7 +150,7 @@ $(function(){
     $("#goRegBtn").click(function(){location.href='register.html';});
 	$("#loginBtn").click(function(){
 		var secret=$.trim($("#loginSecret").val());
-		if(secret)return;
+		if(secret=='')return false;
 		login(secret);
 	});
 	$("#goLogoutBtn").click(function(){
@@ -162,12 +171,6 @@ $(function(){
 			
 		});
 	});
-	serverHTTP('user/list',{page:1,pageSize:10},function(data){
-	  data=JSON.parse(data);
-	  data={list:data};
-	  var html = $(template("LIST", data));
-      $(".dataList").html(html);
-	});
 	$(window).load(function(){
 		switch(typs){
 		    case "register.html"://用户注册生成新帐号
@@ -175,7 +178,7 @@ $(function(){
 		    		$("#regAccout").val(rsp.secret);
 		    	})
 		    	$("#regNextBtn").click(function(){
-		    		login(secret);
+		    		login($("#regAccout").val());
 		    	});
 			break;
 			case "index.html":
@@ -187,6 +190,7 @@ $(function(){
 				$("#infoWallet").val('MY WALLET ADDRESS');//我的钱包地址
 			break;
 			case "info_dogs.html":
+				data=JSON.parse(data);
 			    data={list:data};
 			    var html = $(template("DOGLIST", data));//我的小狗列表
 		        $("#infoDogsList").html(html);
