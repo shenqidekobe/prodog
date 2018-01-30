@@ -28,17 +28,17 @@ module.exports = {
     if (!obj) return 'Dog not found';
     
     app.sdb.update('Dog', {
-      nickname: nickname||'',
-      amount: amount || '',
-      owner: owner||'',
-      isold: isold||0,
-      soldtime: soldtime||'',
-      ispair: ispair||0,
-      pairamount: pairamount||'',
+      nickname: nickname||obj.nickname,
+      amount: amount || obj.amount,
+      owner: owner||obj.owner,
+      isold: isold||obj.isold,
+      soldtime: soldtime||obj.soldtime,
+      ispair: ispair||obj.ispair,
+      pairamount: pairamount||obj.pairamount,
       paircount: paircount||obj.paircount,
-      pairtime: pairtime||'',
-      culturetime: culturetime||'',
-      israre: israre||0
+      pairtime: pairtime||obj.pairtime,
+      culturetime: culturetime||obj.culturetime,
+      israre: israre||obj.israre
     },{
       id:id
     })
