@@ -20,13 +20,13 @@ async function getDogs(query) {
   return { count: count, dogs: dogs }
 }
 
-app.route.get('/dogs', async (req) => {
+app.route.post('/dogs', async (req) => {
   let query = req.query
   let res = await getDogs(query)
   return res
 })
 
-app.route.get('/dogs/:id', async (req) => {
+app.route.post('/dogs/:id', async (req) => {
   let id = req.params.id
   let dog = await app.model.Dog.findOne({
     condition: { id: id }
