@@ -71,3 +71,27 @@ input,button,textarea{outline: none;border: 0;    vertical-align: top;font-famil
 .msg-err{position:absolute;left:0;top:100%;line-height:16px}
 .cf00,.c-f00{color:#f00 !important}
 .m-popbg{position:fixed;top:0px;left:0px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop));width:100%;height:100%;z-index:10000;background:#000;background-color:rgba(0,0,0,.3);display:none}
+
+.toast {
+	position: fixed;
+	left: 0;
+	top: 50%;
+	z-index: 10;
+	height: 40px;
+	margin: -20px 0 0;
+	text-align: center;
+	width: 100%;
+	display: none;
+}
+.toast span {
+	border-radius: 5px;
+	height: 40px;
+	padding: 0 10px;
+	color: rgba(255, 255, 255, 1);
+	line-height: 40px;
+	display: inline-block;
+	font-size: 14px;
+}
+.toast .default {
+	background: rgba(0, 0, 0, .7);
+}
