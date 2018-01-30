@@ -108,36 +108,72 @@ $(function(){
 			case "index.html":
 			break;
 			case "info.html":
+				$("#infoBalance").text('666ACT');//我的余额
 			break;
 			case "info_wallet.html":
+				$("#infoWallet").val('MY WALLET ADDRESS');//我的钱包地址
 			break;
 			case "info_dogs.html":
+			    data={list:data};
+			    var html = $(template("DOGLIST", data));//我的小狗列表
+		        $("#infoDogsList").html(html);
 			break;
 			case "info_dog_detail.html":
+			    var html = $(template("DOGDETAIL", data));//我的小狗详情
+			    $(".content").html(html);
 			break;
 			case "lettory.html":
+				var html='<span class="hours">16</span><span class="minute">38</span><span class="sceond">24</span>';
+				$(".time-group").html(html);//抽奖倒计时
 			break;
 			case "lettory_yes.html":
+				var html = $(template("LOTTERYDOG", data));//中奖的狗
+				$("#lotteryDogUl").html(html);
 			break;
 			case "market_list.html":
+				data={list:data};
+				var html = $(template("MARKETDOGS", data));//市场列表的狗
+			    $("#marketDogsFotter").before(html);
 			break;
 			case "market_detail.html":
+				var html = $(template("DOGDETAIL", data));//市场小狗的详情
+			    $(".content").html(html);
 			break;
 			case "market_order.html":
+				var html = $(template("MARKETORDER", data));//市场下订单
+			    $(".imgTitPriTime-ul").html(html);
 			break;
 			case "market_order_pay.html":
+				$("#amount").text('999 CAT');
+				$("#fee").text('1 CAT');
+				$("#total").text('1000 CAT');
+				var html = $(template("MARKETORDERPAY", data));//市场订单支付
+			    $("#orderPayDog").html(html);
 			break;
 			case "pair.html":
+				$(".tit-fs18").text('HelloKimi');//配对小狗
+				$("#amount").text('888 ACT');
 			break;
 			case "pair_dogs.html":
+				data={list:data};
+				var html = $(template("PAIRDOGS", data));//配对的小狗
+			    $("#pairDogsUl").before(html);
 			break;
 			case "bind_email.html":
+				$("#bindEmail").val();
+				$("#bindNickname").val();//绑定邮箱
 			break;
 			case "bind_wallet.html":
+				$("#bindWallet").val();//绑定钱包地址
 			break;
 			case "buy_list.html":
+				data={list:data};
+				var html = $(template("BUYDOGS", data));//购买列表的小狗
+			    $("#buyListUl").before(html);
 			break;
 			case "buy_detail.html":
+			    var html = $(template("DOGDETAIL", data));//购买小狗的详情
+			    $(".content").html(html);
 			break;
 		}
 	});

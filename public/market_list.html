@@ -21,58 +21,7 @@
 	<div class="content">
 		<div class="box p15 pb0">
 			<ul>
-				<li class="imgTitPriTime "><a href=""
-					class="g-c2-float flex box">
-						<div class="hd img-w-100">
-							<div class="radius-3">
-								<img src="images/img-02.png" class="img" />
-							</div>
-						</div>
-						<div class="bd flex-1">
-							<div class="tit tit-fs18">Hobbit · 第一代</div>
-							<div class="pri-box">售价 = 999 CAT</div>
-							<div class="time">1小时前</div>
-						</div>
-				</a></li>
-				<li class="imgTitPriTime "><a href=""
-					class="g-c2-float flex box">
-						<div class="hd img-w-100">
-							<div class="radius-3">
-								<img src="images/img-02.png" class="img" />
-							</div>
-						</div>
-						<div class="bd flex-1">
-							<div class="tit tit-fs18">Hobbit · 第一代</div>
-							<div class="pri-box">售价 = 999 CAT</div>
-							<div class="time">1小时前</div>
-						</div>
-				</a></li>
-				<li class="imgTitPriTime "><a href=""
-					class="g-c2-float flex box">
-						<div class="hd img-w-100">
-							<div class="radius-3">
-								<img src="images/img-02.png" class="img" />
-							</div>
-						</div>
-						<div class="bd flex-1">
-							<div class="tit tit-fs18">Hobbit · 第一代</div>
-							<div class="pri-box">售价 = 999 CAT</div>
-							<div class="time">1小时前</div>
-						</div>
-				</a></li>
-				<li class="imgTitPriTime "><a href=""
-					class="g-c2-float flex box">
-						<div class="hd img-w-100">
-							<div class="radius-3">
-								<img src="images/img-02.png" class="img" />
-							</div>
-						</div>
-						<div class="bd flex-1">
-							<div class="tit tit-fs18">Hobbit · 第一代</div>
-							<div class="pri-box">售价 = 999 CAT</div>
-							<div class="time">1小时前</div>
-						</div>
-				</a></li>
+			  <span id="marketDogsFotter"></span>
 			</ul>
 		</div>
 	</div>
@@ -85,6 +34,28 @@
 			<li><a href="info.html"><i class="icon icon-my"></i></a></li>
 		</ul>
 	</div>
+	<script type="text/html" id="MARKETDOGS" style="dispaly:none;">
+        {{if list != null && list.length > 0}}
+           {{each list as item i}}
+               <li class="imgTitPriTime ">
+		          <a href="" class="g-c2-float flex box">
+				     <div class="hd img-w-100">
+						<div class="radius-3">
+							<img src="images/img-02.png" class="img" />
+						</div>
+					</div>
+					<div class="bd flex-1">
+						<div class="tit tit-fs18">Hobbit · 第一代</div>
+						<div class="pri-box">售价 = 999 CAT</div>
+						<div class="time">1小时前</div>
+					</div>
+				  </a>
+		       </li>
+           {{/each}}
+       {{else}}
+           <div>暂无数据</div>
+       {{/if}}
+    </script>
 	
 </body>
 </html>
