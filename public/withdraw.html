@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我的钱包地址</title>
+<title>提现</title>
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="yes" name="apple-touch-fullscreen">
 <meta content="email=no" name="format-detection">
@@ -15,17 +14,21 @@
 	<div class="header"></div>
 	<div class="content">
 		<div class="box-login-form p015 form">
+
 			<div class="item item-block">
-				<div class="label">钱包地址</div>
+				<div class="label">提现金额（ACT）</div>
 				<div class="block">
-					<input type="text" id="infoWallet" class="input" placeholder="我的钱包地址"/>
+					<input type="number" id="withdrawAmount" class="input" placeholder="输入提现金额" value="" />
 				</div>
 			</div>
 			<div class="item item-block btn-groups flex mt-15b0">
-				<button class="btn-r btn btn-log flex-1 btn-linear radius-50 btn-next" type="button" id="pubWalletBtn">发布</button>
+				<button class="btn-r btn btn-log flex-1 btn-linear radius-50 btn-next" type="button" id="withdrawSaveBtn">确定</button>
 			</div>
 		</div>
 	</div>
-
+	
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
