@@ -58,7 +58,7 @@
 				</div>
 			</li>
 			<li class="item">
-			  <a href="" class="btn tit-fs16 btn-h50 btn-linear no-shadow">确认支付</a>
+			  <a href="" class="btn tit-fs16 btn-h50 btn-linear no-shadow" type="button" id="buyConfirmBtn">确认支付</a>
 			</li>
 		</ul>
 	</div>
@@ -68,18 +68,22 @@
 		  <a href="" class="g-c2-float flex box">
 			<div class="hd img-w-100">
 				<div class="radius-3">
-					<img src="images/img-02.png" class="img" />
+					<img src="{{picurl}}" class="img" />
 				</div>
 			</div>
 			<div class="bd flex-1">
 				<div class="tit tit-fs18">Hobbit</div>
 				<div class="des des-1">
-					<span class="pr16">第1代</span><span>生育时间11小时</span>
+					<span class="pr16">第{{generation}}代</span><span>生育时间11小时</span>
 				</div>
-				<div class="pri-box">售价 = 999 CAT</div>
+				<div class="pri-box">售价 = {{amount}} {{currency}}</div>
 			</div>
 		  </a>
 		</li>
     </script>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>

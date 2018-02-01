@@ -23,7 +23,8 @@ module.exports = {
     {
       name: 'nickname',//昵称
       type: 'String',
-      length: 64
+      length: 64,
+      unique: true
     },
     {
       name: 'amount',// 出售金额
