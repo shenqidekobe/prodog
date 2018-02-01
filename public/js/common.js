@@ -197,7 +197,13 @@ $(function(){
 		}else{
 			$(".time-group").html(html);//抽奖倒计时
 		}
-	} 
+	}
+	$("body").on('click', "a[login=y],button[login=y]", function(e){
+		if(!isLogin()){
+			location.href='login.html';
+			e.preventDefault();
+		}
+	})
 	$(window).load(function(){
 		switch(typs){
 		    case "register.html"://用户注册生成新帐号
@@ -272,6 +278,14 @@ $(function(){
 			case "market_list.html"://市场列表的狗
 				interfaceASCH('/market/dogs',{isold:1},function(rsp){
 					var data={list:rsp.dogs};
+					template.helper("getGenerationStr", function(ds) {
+						if(ds.generation == 0) {return "一";}
+						if(ds.generation == 1) {return "二";}
+						if(ds.generation == 2) {return "三";}
+						if(ds.generation == 3) {return "四";}
+						if(ds.generation == 4) {return "五";}
+						if(ds.generation == 5) {return "六";}
+					});
 					var html = $(template("MARKETDOGS", data));
 					$("#marketDogsFotter").before(html);
 				});

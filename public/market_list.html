@@ -38,14 +38,14 @@
         {{if list != null && list.length > 0}}
            {{each list as item i}}
                <li class="imgTitPriTime ">
-		          <a href="market_detail.html?id={{item.id}}" class="g-c2-float flex box">
+		          <a href="market_detail.html?id={{item.id}}" class="g-c2-float flex box" login="y">
 				     <div class="hd img-w-100">
 						<div class="radius-3">
 							<img src="{{item.picurl}}" class="img" />
 						</div>
 					</div>
 					<div class="bd flex-1">
-						<div class="tit tit-fs18">{{item.nickname}} · 第{{item.generation}}代</div>
+						<div class="tit tit-fs18">{{item.nickname}} · 第{{item | getGenerationStr}}代</div>
 						<div class="pri-box">售价 = {{item.amount}} {{item.currency}}</div>
 						<div class="time">1小时前</div>
 					</div>
