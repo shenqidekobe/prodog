@@ -16,8 +16,7 @@ module.exports = {
     },
     {
         name: 'generation',// 第几代
-        type: 'String',
-        length:32,
+        type: 'Number',
         not_null: true
     },
     {
