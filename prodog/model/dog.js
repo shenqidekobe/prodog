@@ -20,6 +20,15 @@ module.exports = {
         not_null: true
     },
     {
+        name: 'age',// 年龄：天数
+        type: 'Number'
+    },
+    {
+        name: 'dogname',//狗名
+        type: 'String',
+        length: 64
+    },
+    {
       name: 'nickname',//昵称
       type: 'String',
       length: 64
@@ -85,6 +94,11 @@ module.exports = {
         length:64
     },
     {
+        name: 'genes',//基因
+        type: 'String',
+        length:512
+    },
+    {
         name: 'ispair',// 是否可配{0不1可}
         type: 'Number',
         default: 0
@@ -99,7 +113,12 @@ module.exports = {
         default: 0
     },
     {
-        name: 'pairtime',// 配对截止时间
+        name: 'pairtime',// 配对生育时间
+        type: 'String',
+        length:64
+    },
+    {
+        name: 'pairstarttime',// 配对开始时间
         type: 'String',
         length:64
     },
