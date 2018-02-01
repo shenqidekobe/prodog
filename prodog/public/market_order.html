@@ -25,7 +25,7 @@
 	<div class="g-h60"></div>
 	<div class="footer fixed bottom">
 		<div class="item item-block btn-groups flex">
-			<button class="btn  flex-1 btn-linear btn-succ btn-h50">好的，我要购买</button>
+			<button class="btn  flex-1 btn-linear btn-succ btn-h50" type="button" id="orderBuyBtn">好的，我要购买</button>
 		</div>
 	</div>
 	<script type="text/html" id="MARKETORDER" style="dispaly:none;">
@@ -33,26 +33,30 @@
 		   <a href="" class="g-c2-float flex box column">
 				<div class="hd">
 					<div class="radius-0">
-						<img src="images/img-03.png" class="img" />
+						<img src="{{picurl}}" class="img" />
 					</div>
 				</div>
 				<div class="bd flex-1 ptb20lr15">
-					<div class="tit tit-fs21">Hobbit</div>
+					<div class="tit tit-fs21">{{nickname}}</div>
 					<div class="des">
-						<span class="pr16">第1代</span><span>生育时间11小时</span>
+						<span class="pr16">第{{generation}}代</span><span>生育时间11小时</span>
 					</div>
-					<div class="pri-box">当前售价 = 999 CAT</div>
+					<div class="pri-box">当前售价 = {{amount}} {{currency}}</div>
 					<div class="buy flex bt1-ebebeb">
 						<div class="des">点击我要买按钮，您将支付
-						  <span class="tit">999ACT</span>给
-						  <span class="tit">Bonvoyage</span>，小狗
-						  <span class="tit">Hobbit</span>将归属于您。
+						  <span class="tit">{{amount}}{{currency}}</span>给
+						  <span class="tit">{{owner}}</span>，小狗
+						  <span class="tit">{{nickname}}</span>将归属于您。
 						</div>
 					</div>
 				</div>
 		    </a>
 		</li>
     </script>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 
 </body>
 </html>

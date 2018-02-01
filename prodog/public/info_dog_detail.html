@@ -23,34 +23,34 @@
 			<button class="btn  flex-1 bgc-ffb04f btn-succ ml0 btn-h50">出售</button>
 		</div>
 	</div>
-	<script type="text/html" id="DOGDETAIL" style="dispaly:none;">
-       <div class="box">
+<script type="text/html" id="DOGDETAIL" style="dispaly:none;">
+       	<div class="box">
 			<ul class="imgTitPriTime-ul">
-				<li class="imgTitPriTime p0">
-				    <a href="" class="g-c2-float flex box column">
+				<li class="imgTitPriTime p0"><a href="javascript:void(0);"
+					class="g-c2-float flex box column">
 						<div class="hd">
 							<div class="radius-0">
-								<img src="images/img-03.png" class="img" />
+								<img src="{{picurl}}" class="img" />
 							</div>
 						</div>
 						<div class="bd flex-1 ptb20lr15">
-							<div class="tit tit-fs21">Hobbit</div>
+							<div class="tit tit-fs21">{{nickname}}</div>
 							<div class="des">
-								<span class="pr16">第1代</span><span>生育时间11小时</span>
+								<span class="pr16">第{{generation}}代</span>
+                                <span>生育时间11小时</span>
 							</div>
-							<div class="pri-box">当前售价 = 999 CAT</div>
+							<div class="pri-box">当前售价 = {{amount}} {{currency}}</div>
 							<div class="name flex">
 								<div class="hd img-w-40">
 									<div class="radius-50 bgc-999"></div>
 								</div>
 								<div class="bd">
-									<div class="tit">Bonvoyage</div>
+									<div class="tit">{{owner}}</div>
 									<div class="des">所有者</div>
 								</div>
 							</div>
 						</div>
-				    </a>
-                </li>
+				</a></li>
 			</ul>
 		</div>
 		<div class="box ptb20lr15 bgc-fff bt10-f5f5f5">
@@ -60,20 +60,21 @@
 			<div class="bd">
 				<div class="label-group f-click-par">
 					<span class="label f-click on" data-id="radio" data-checked="1"
-						data-par=".f-click-par" data-v="0">赤</span>
-					<span class="label f-click" data-id="radio" data-checked=""
-						data-par=".f-click-par" data-v="0">宝蓝</span>
-					<span class="label f-click" data-id="radio" data-checked=""
-						data-par=".f-click-par" data-v="0">阿拉斯加</span>
-					<span class="label f-click" data-id="radio" data-checked=""
-						data-par=".f-click-par" data-v="0">拉布拉多</span>
-					<span class="label f-click" data-id="radio" data-checked=""
-						data-par=".f-click-par" data-v="0">吉娃娃</span>
-					<span class="label f-click" data-id="radio" data-checked=""
+						data-par=".f-click-par" data-v="0">赤</span><span
+						class="label f-click" data-id="radio" data-checked=""
+						data-par=".f-click-par" data-v="0">宝蓝</span><span
+						class="label f-click" data-id="radio" data-checked=""
+						data-par=".f-click-par" data-v="0">阿拉斯加</span><span
+						class="label f-click" data-id="radio" data-checked=""
+						data-par=".f-click-par" data-v="0">拉布拉多</span><span
+						class="label f-click" data-id="radio" data-checked=""
+						data-par=".f-click-par" data-v="0">吉娃娃</span><span
+						class="label f-click" data-id="radio" data-checked=""
 						data-par=".f-click-par" data-v="0">边境牧羊犬</span>
 				</div>
 			</div>
 		</div>
+        {{if father !=null &&father!=''&&fatherObj!=null}}
 		<div class="box ptb20lr15 bgc-fff bt10-f5f5f5">
 			<div class="hd">
 				<div class="tit tit-fs21">父母</div>
@@ -81,30 +82,38 @@
 			<div class="bd">
 				<ul class="flex img-groups label-group">
 					<li class="item img-w-120">
-					   <a href=""><span class="radius-2"><img src="images/img-02.png" class="img" /></span></a>
-					</li>
+                       <a href="buy_detail.html?id={{fatherObj.id}}">
+                         <span class="radius-2"><img src="{{fatherObj.picurl}}" class="img" /></span>
+                     </a></li>
 					<li class="item img-w-120">
-					   <a href=""><span class="radius-2"><img src="images/img-02.png" class="img" /></span></a>
-					</li>
+                       <a href="buy_detail.html?id={{motherObj.id}}">
+                       <span class="radius-2"><img src="{{motherObj.picurl}}" class="img" /></span>
+                    </a></li>
 				</ul>
 			</div>
 		</div>
+        {{/if}}
+        {{if children!=null &&children.length>0}}
 		<div class="box ptb20lr15 bgc-fff bt10-f5f5f5">
 			<div class="hd">
 				<div class="tit tit-fs21">子女</div>
 			</div>
 			<div class="bd">
 				<ul class="flex img-groups label-group">
+                    {{each children as item i}}
 					<li class="item img-w-120">
-					   <a href=""><span class="radius-2"><img src="images/img-02.png" class="img" /></span></a>
-					</li>
-					<li class="item img-w-120">
-					   <a href=""><span class="radius-2"><img src="images/img-02.png" class="img" /></span></a>
-					</li>
+                       <a href="buy_detail.html?id={{item.id}}""><span class="radius-2"><img src="{{item.picurl}}" class="img" /></span>
+                    </a></li>
+                    {{/each}}
 				</ul>
 			</div>
 		</div>
+        {{/if}}
     </script>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 
 </body>
 </html>

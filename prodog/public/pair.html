@@ -15,18 +15,18 @@
 	<div class="content">
 		<div class="box-login-form p15 form">
 			<div class="item item-inline-block box-peidui flex tac pb21">
-				<div class="label flex-1 mr10 bgc-fff por">
+				<div class="label flex-1 mr10 bgc-fff por" id="selectDogs">
 					<label class="label-box">
-						<input type="file" class="none" name="file" />
 						<span class="tit">选择您的狗</span>
 					</label>
 				</div>
-				<div class="inline-block flex-1 por">
+				<div class="inline-block flex-1 por" id="peiduiDog">
 					<div class="box">
 						<div class="hd">
 							<img src="images/img-02.png" class="img" />
 							<div class="pri poa opa-tips radius-50">
-								<span class="family-Bold">配对价格</span>=<span id="amount">888ACT</span>
+								<span class="family-Bold">配对价格</span>=
+								<span id="amount">888ACT</span>
 							</div>
 						</div>
 						<div class="bd">
@@ -39,10 +39,30 @@
 				<div class="msg">注意：小狗在市场挂单、生育或出生中，不能繁衍下一代，并且亲子或兄弟姐妹间也无法生育，所以它们不在下面列表中</div>
 			</div>
 			<div class="item item-block btn-groups flex ">
-				<button class="btn btn-log flex-1 btn-linear radius-50 btn-next">确认繁殖</button>
+				<button class="btn btn-log flex-1 btn-linear radius-50 btn-next" type="button" id="pairConfirmBtn">确认繁殖</button>
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/html" id="PAIRMYDOG" style="dispaly:none;">
+        <div class="inline-block flex-1 por" id="selectDogs">
+			<div class="box">
+				<div class="hd">
+					<img src="{{picurl}}" class="img" />
+					<div class="pri poa opa-tips radius-50">
+					</div>
+				</div>
+				<div class="bd">
+					<div class="tit tit-fs18">{{nickname}}</div>
+				</div>
+			</div>
+		</div>
+    </script>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+	
 
 </body>
 </html>
