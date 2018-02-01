@@ -1,5 +1,5 @@
 module.exports = {
-  insertDog: async function (generation,address, amount, picode, picurl,
+  insertDog: async function (generation,dogname,address, amount, picode, picurl,
 		  owner,father,mother,constellation) {
     //app.validate('string', generation, {number: {onlyInteger: true, greaterThanOrEqualTo:0, lessThanOrEqualTo: 8}})
     app.validate('string', picode, {length: { minimum: 5, maximum: 256 }})
@@ -10,6 +10,7 @@ module.exports = {
     if (exists) return
     
     app.sdb.create('Dog', {
+      dogname: dogname||'',
       address: address||'',
       amount: amount || '',
       picode: picode || '',
