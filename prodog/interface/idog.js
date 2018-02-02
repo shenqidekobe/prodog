@@ -11,11 +11,13 @@ async function getDogs(query) {
   if (isDefined(query.israre)) condition.ispair = query.israre
   
   let count = await app.model.Dog.count(condition)
+  let sortField=query.sort || 'id'
+  let sortDir=query.dir || -1;
   let dogs = await app.model.Dog.findAll({
     condition: condition,
     limit: query.limit || 50,
     offset: query.offset || 0,
-    sort: { id : -1 }
+    sort: { sortField : sortDir }
   })
   return { count: count, dogs: dogs }
 }
