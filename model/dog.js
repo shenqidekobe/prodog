@@ -9,10 +9,15 @@ module.exports = {
       primary_key: true
     },
     {
-        name: 'status',//状态{1:待领取；2:已领取；3:出售中；4:生育中}
+        name: 'status',//状态{1:待领取；2:常规；3:出售中；4:生育中}
         type: 'String',
         length:16,
         default:'1'
+    },
+    {
+        name: 'source',//来源{1:抽奖所得；2:购买的；3:繁殖的}
+        type: 'String',
+        length:16
     },
     {
         name: 'generation',// 第几代
@@ -113,7 +118,7 @@ module.exports = {
         default: 0
     },
     {
-        name: 'pairtime',// 配对生育时间
+        name: 'pairtime',// 配对生育时间(单位：小时)
         type: 'String',
         length:64
     },
@@ -128,7 +133,7 @@ module.exports = {
         length:64
     },
     {
-        name: 'culturetime',// 修养时间
+        name: 'culturetime',// 修养时间(单位：小时)
         type: 'String',
         length:64
     },

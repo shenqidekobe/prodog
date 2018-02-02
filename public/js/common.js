@@ -12,9 +12,12 @@ $(function(){
 	var aschJS=window.AschJS;
     
     let ASCH_CURRENCY="XAS";
-    let UK='ASCH_USER_DOG_SESSIONID';
+    let LOTTERY_FEE=5;//抽奖手续费
+    let MARKET_FEE=1;//市场购买的手续费
+    let UK='ASCH_USER_DOG_SESSIONID',BK='ASCH_USER_BALANCE_SESSION';
     let validClickBtns="goChargeBtn,goWithdrawBtn,goBindEmailBtn,saveBindEmailBtn,goLotteryBtn";
     let userInfo={};
+    let userBalance=0;
     
     console.info('to page:'+typs);
 	if($('#swiper-container-1').length){
@@ -47,6 +50,19 @@ $(function(){
 	}
 	function isLogin(){return store.getItem(UK)!=null;}
 	function getUser(){if(isLogin()){return JSON.parse(store.getItem(UK));}}
+	function getUserBalance(){if(isLogin()){return Number(store.getItem(BK));}}
+	function updateUserBalance(isAdd,m){
+		if(!isLogin())return;
+		var s=Number(store.getItem(BK));
+		if(isAdd){
+			console.info("add balance ="+(s+m));
+			store.setItem(BK,(s+m));
+		}else{
+			if(m>s)return;
+			console.info("sub balance ="+(s-m));
+			store.setItem(BK,(s-m));
+		}
+	}
 	//远程API接口服务调用
 	function serverHTTP(pathsuffix,data,callback){
 		jsonAjax.post({url:SERVER_URL+pathsuffix,data:data,
@@ -131,24 +147,26 @@ $(function(){
                     return;
                 }
     			var bls=rsp.account.balances;
-    			var balances="",b=0;
+    			var balances="";
     			for (var i in balances) {
                     var balanceInfo = bls[i];
                     var balance = Number(balanceInfo.balance) / 100000000;
                     var currency = balanceInfo.currency;
                     if(currency==ASCH_CURRENCY){
-                    	b=balance;
+                    	userBalance=balance;
                     }
                     var bc=balance+currency;
                     balances=balances==''?bc:balances+','+bc;
                 }
-    			userInfo.balance=b;
+    			userInfo.balance=userBalance;
     			userInfo.secret = secret;
     			userInfo.publicKey = rsp.account.publicKey;
     			userInfo.address = rsp.account.address;
     			serverHTTP('user/login',{secret:secret,address:userInfo.address,publicKey:userInfo.publicKey,balances:balances},function(isp){
     				userInfo.id=isp.id;
     				store.setItem(UK,JSON.stringify(userInfo));
+    				store.setItem(BK,userBalance);
+    				
     				location.href='index.html';
     			});
     		}
@@ -218,9 +236,11 @@ $(function(){
 				
 			break;
 			case "info.html"://我的个人信息
-				$("#infoBalance").text(getUser().balance+ASCH_CURRENCY);//我的余额
+				if(!isLogin()){location.href='login.html';}
+				$("#infoBalance").text(getUserBalance()+ASCH_CURRENCY);//我的余额
 			break;
 			case "info_wallet.html":
+				if(!isLogin()){location.href='login.html';}
 				$("#infoWallet").val('MY WALLET ADDRESS');//我的钱包地址
 				$("#pubWalletBtn").click(function(){
 					toast('发布成功');
@@ -228,6 +248,7 @@ $(function(){
 				});
 			break;
 			case "info_dogs.html"://我的小狗列表
+				if(!isLogin()){location.href='login.html';}
 				interfaceASCH('/info/dogs',{ispair:1},function(rsp){
 					var data={list:rsp.dogs};
 					var html = $(template("DOGLIST", data));
@@ -235,17 +256,24 @@ $(function(){
 				});
 			break;
 			case "info_dog_detail.html"://我的小狗详情
+				if(!isLogin()){location.href='login.html';}
 				interfaceASCH('/fulldogs/'+id,{},function(rsp){
 					var html = $(template("DOGDETAIL", rsp.dog));
 				    $(".content").html(html);
 				});
 			break;
 			case "lottery.html":
+				if(!isLogin()){location.href='login.html';}
+				$(".fs12").text("(消耗"+LOTTERY_FEE+ASCH_CURRENCY+")");
+				
 				serverHTTP('lottery/next_award',{},function(rsp){
 					console.info(rsp);
 					if(rsp==null){
 						$("#nextLetteryBtn").text('请耐心等待');
 						return false;
+					}
+					if(rsp.isWin){
+						$("#lotteryYesTips").show();//已中奖提示
 					}
 					var date=new Date();
 					var curd=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -265,15 +293,21 @@ $(function(){
 					interval=window.setInterval(function(){countDown(ds[0],m,d,h,mu);}, 1000); 
 				});
 				$("#goLotteryBtn").click(function(){
-					serverHTTP('lottery/all_award',{},function(rsp){
+					//先购买奖卷再抽奖
+					serverHTTP('lottery/buy',{},function(rsp){
 						lstore.setItem('LOTTERY_CUR',123);
 						location.href='lottery_ing.html'
 					});
 				});
 			break;
-			case "lottery_yes.html":
-				var html = $(template("LOTTERYDOG", data));//中奖的狗
-				$("#lotteryDogUl").html(html);
+			case "lottery_yes.html"://我中奖的狗
+				if(!isLogin()){location.href='login.html';}
+				serverHTTP('lottery/win_list',{address:getUser().address,page:1,size:50},function(rsp){
+					console.info(rsp);
+					var records={list:rsp.records};
+					var html = $(template("LOTTERYDOG", records));
+					$("#lotteryDogUl").html(html);
+				});
 			break;
 			case "market_list.html"://市场列表的狗
 				interfaceASCH('/market/dogs',{isold:1},function(rsp){
@@ -305,6 +339,7 @@ $(function(){
 				});
 			break;
 			case "market_order.html"://市场下订单
+				if(!isLogin()){location.href='login.html';}
 				var id=getUrlParams("id");
 				interfaceASCH('/dogs/'+id,{},function(rsp){
 					var html = $(template("MARKETORDER", rsp.dog));
@@ -316,13 +351,14 @@ $(function(){
 				});
 			break;
 			case "market_order_pay.html"://市场订单支付
+				if(!isLogin()){location.href='login.html';}
 				var id=getUrlParams("id");
 				interfaceASCH('/fulldogs/'+id,{},function(rsp){
 					var data=rsp.dog;
 					var amount=data.amount;
 					$("#amount").text(amount+' '+data.currency);
-					$("#fee").text('1 '+data.currency);
-					$("#total").text('1000 '+data.currency);
+					$("#fee").text(MARKET_FEE+' '+data.currency);
+					$("#total").text((MARKET_FEE+amount)+' '+data.currency);
 					var html = $(template("MARKETORDERPAY", data));
 				    $("#orderPayDog").html(html);
 				    
@@ -333,6 +369,7 @@ $(function(){
 						args.push(amount);
 						aschCONTRACT(3,fee, JSON.stringify(args),function(rsp){
 							if(rsp.success){
+								//等待交易结果
 								toast('购买成功!');
 								location.href='info.html';
 							}
@@ -340,7 +377,8 @@ $(function(){
 				    });
 				});
 			break;
-			case "pair.html"://配对小狗
+			case "pair.html"://去配对小狗
+				if(!isLogin()){location.href='login.html';}
 				var did=getUrlParams("did");
 				if(did!=''&&did!=null){
 					$(".bgc-fff").remove();
@@ -350,6 +388,7 @@ $(function(){
 					    $("#peiduiDog").before(html);
 					});
 				}
+				//配对的小狗
 				$(".tit-fs18").text('HelloKimi');
 				$("#amount").text('888 '+ASCH_CURRENCY);
 				$("#selectDogs").click(function(){
@@ -360,6 +399,7 @@ $(function(){
 				});
 			break;
 			case "pair_dogs.html"://选择我的小狗进行配对
+				if(!isLogin()){location.href='login.html';}
 				interfaceASCH('/info/dogs',{ispair:1},function(rsp){
 					var data={list:rsp.dogs};
 					var html = $(template("PAIRDOGS", data));
@@ -367,8 +407,11 @@ $(function(){
 				});
 			break;
 			case "bind_email.html"://绑定邮箱
-				$("#bindEmail").val();
-				$("#bindNickname").val();
+				if(!isLogin()){location.href='login.html';}
+				serverHTTP('user/get/'+getUser().address,{},function(rsp){
+					$("#bindEmail").val(rsp.mail);
+					$("#bindNickname").val(rsp.nickName);
+				});
 				$("#saveBindEmailBtn").click(function(){
 					var email=$.trim($("#bindEmail").val());
 					var nickname=$.trim($("#bindNickname").val());
@@ -380,7 +423,10 @@ $(function(){
 				});
 			break;
 			case "bind_wallet.html"://绑定钱包地址
-				$("#bindWallet").val();
+				if(!isLogin()){locatiosn.href='login.html';}
+				serverHTTP('user/get/'+getUser().address,{},function(rsp){
+					$("#bindWallet").val(rsp.wallet);
+				});
 				$("#saveBindWalletBtn").click(function(){
 					var wallet=$.trim($("#bindWallet").val());
 					if(wallet=='')return;
@@ -408,6 +454,7 @@ $(function(){
 			    });
 			break;
 			case "charge.html"://充值页面
+				if(!isLogin()){location.href='login.html';}
 				$("#currencyText").text(ASCH_CURRENCY);
 				$("#chargeSaveBtn").click(function(){
 					var amount=$.trim($("#chargeAmount").val());
@@ -425,12 +472,14 @@ $(function(){
 			                    alert(rsp.error);
 			                    return;
 			                }
+			    			updateUserBalance(true,(Number(amount)));
 			    			console.info(rsp);
 			    		}
 					});
 				});
 			break;
 			case "withdraw.html"://提现页面
+				if(!isLogin()){location.href='login.html';}
 				$("#currencyText").text(ASCH_CURRENCY);
                 $("#withdrawSaveBtn").click(function(){
                 	var amount=$.trim($("#withdrawAmount").val());
@@ -443,6 +492,7 @@ $(function(){
 					aschCONTRACT(2,fee, JSON.stringify(args),function(rsp){
 						if(rsp.success){
 							toast('提现成功!');
+							updateUserBalance(false,(Number(amount)+Number(fee)));
 							location.href='info.html';
 						}
 					});

@@ -9,7 +9,7 @@ values(1,'0',8000,'admin2','DNCK8JS','https://static.oschina.net/uploads/img/201
 insert into dogs(id,generation,amount,nickname,picode,picurl,israre,isold,father,mother,createtime)
 values(2,'2',8000,'faladl','DNCK8JS','http://img4.duitang.com/uploads/item/201508/25/20150825143238_CR8tK.jpeg',0,1,null,null,'2018-02-01 12:22:00');
 insert into dogs(id,generation,amount,nickname,picode,picurl,israre,isold,father,mother,createtime)
-values(3,'1',8000,'huido','DNCK8JS','http://img4.duitang.com/uploads/item/201508/25/20150825143238_CR8tK.jpegg',0,1,null,null,'2018-02-01 12:22:00');
+values(3,'1',8000,'huido','DNCK8JS','http://img4.duitang.com/uploads/item/201508/25/20150825143238_CR8tK.jpeg',0,1,null,null,'2018-02-01 12:22:00');
 insert into dogs(id,generation,amount,nickname,picode,picurl,israre,isold,father,mother,createtime)
 values(4,'3',8000,'wudi','DNCK8JS','https://static.oschina.net/uploads/img/201801/21081936_2LFo.png',0,1,2,3,'2018-02-01 12:22:00');
 insert into dogs(id,generation,amount,nickname,picode,picurl,israre,isold,father,mother,createtime)
