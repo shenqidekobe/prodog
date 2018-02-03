@@ -16,7 +16,7 @@ module.exports = {
     })
   },
   //修改任务状态
-  publishTask: async function (id,status) {
+  updateTaskStatus: async function (id,status) {
     let obj = await app.model.Task.findOne({ condition: { id: id } })
     if (!obj) return 'Task not found';
     
