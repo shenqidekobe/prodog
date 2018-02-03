@@ -13,6 +13,9 @@ module.exports = async function () {
   app.registerContract(1007, 'prodog.updateDogStartPair')
   app.registerContract(1008, 'prodog.updateDogEndPair')
   
+  app.registerContract(2001, 'protask.publishTask')
+  app.registerContract(2002, 'protask.updateTaskStatus')
+  
   app.registerFee(1001, '0', 'XAS')
   app.registerFee(1002, '0', 'XAS')
   app.registerFee(1003, '0', 'XAS')
@@ -21,6 +24,9 @@ module.exports = async function () {
   app.registerFee(1006, '0', 'XAS')
   app.registerFee(1007, '0', 'XAS')
   app.registerFee(1008, '0', 'XAS')
+  
+  app.registerFee(2001, '0', 'XAS')
+  app.registerFee(2002, '0', 'XAS')
   
   app.custom.cache = new IntervalCache(10 * 1000)
 }
