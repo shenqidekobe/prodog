@@ -15,7 +15,7 @@ module.exports = {
         default:'1'
     },
     {
-        name: 'source',//来源{1:抽奖所得；2:购买的；3:繁殖的}
+        name: 'source',//来源{1:抽奖所得；2:购买的；3:转让的；4:繁殖的}
         type: 'String',
         length:16
     },

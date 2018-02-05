@@ -20,7 +20,7 @@ module.exports = {
 		length : 16,
     	default: '1'
 	}, {
-		name : 'type',//任务类型{1:购买小狗}
+		name : 'type',//任务类型{1:购买小狗；2:配对；3:充值；4:提现；}
 		type : 'String',
 		length : 16
 	}, {
