@@ -11,13 +11,22 @@ async function getDogs(query) {
   if (isDefined(query.israre)) condition.ispair = query.israre
   
   let count = await app.model.Dog.count(condition)
-  let sortField=query.sort || 'id'
-  let sortDir=query.dir || -1;
+  let sortDir=query.dir || -1
+  let sort={id:sortDir}
+  if(query.sort=='amount'){
+	  sort={amount:sortDir}
+  }else if(query.sort=='generation'){
+	  sort={generation:sortDir}
+  }else if(query.sort=='createtime'){
+	  sort={createtime:sortDir}
+  }else if(query.sort=='pairamount'){
+	  sort={pairamount:sortDir}
+  }
   let dogs = await app.model.Dog.findAll({
     condition: condition,
     limit: query.limit || 50,
     offset: query.offset || 0,
-    sort: { sortField : sortDir }
+    sort: sort
   })
   return { count: count, dogs: dogs }
 }
