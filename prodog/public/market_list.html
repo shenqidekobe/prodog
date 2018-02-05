@@ -14,8 +14,8 @@
 <body class="bgc-f5f5f5">
 	<div class="header">
 		<ul class="nav-search flex">
-			<li class="flex-1"><a href="" class="on">出售</a></li>
-			<li class="flex-1"><a href="">新上架</a></li>
+			<li class="flex-1"><a class="f-click chushou-v" data-id="pop" data-par=".select-chushou" data-popbg=".bgc-000-5" class="on">出售</a></li>
+			<li class="flex-1"><a class="f-click shengyu-v" data-id="pop" data-par=".select-shengyu" data-popbg=".bgc-000-5" >生育</a></li>
 		</ul>
 	</div>
 	<div class="content">
@@ -34,6 +34,24 @@
 			<li><a href="info.html"><i class="icon icon-my"></i></a></li>
 		</ul>
 	</div>
+	<div class="pop bgc-fff pop-select select-chushou fixed bef-bgc-000">
+		<ul class="mob-select-nav">
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="0" data-cid=".chushou-v" data-show=".select-chushou" data-popbg=".bgc-000-5" >最年长</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="1" data-cid=".chushou-v" data-show=".select-chushou" data-popbg=".bgc-000-5" >最年轻</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="2" data-cid=".chushou-v" data-show=".select-chushou" data-popbg=".bgc-000-5" >最昂贵</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="3" data-cid=".chushou-v" data-show=".select-chushou" data-popbg=".bgc-000-5" >最实惠</li>
+		</ul>
+	</div>
+	<div class="pop bgc-fff pop-select select-shengyu fixed bef-bgc-000">
+		<ul class="mob-select-nav">
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="0" data-cid=".shengyu-v" data-show=".select-shengyu" data-popbg=".bgc-000-5" >最年长2</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="1" data-cid=".shengyu-v" data-show=".select-shengyu" data-popbg=".bgc-000-5" >最年轻2</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="2" data-cid=".shengyu-v" data-show=".select-shengyu" data-popbg=".bgc-000-5" >最昂贵2</li>
+			<li class="f-click list" data-id="select-v" data-par=".f-click-par" data-v="3" data-cid=".shengyu-v" data-show=".select-shengyu" data-popbg=".bgc-000-5" >最实惠2</li>
+		</ul>
+	</div>
+	<div class="pop bgc-000-5 f-click fixed" data-id="pop-close" data-show=".pop-select"></div>
+	
 	<script type="text/html" id="MARKETDOGS" style="dispaly:none;">
         {{if list != null && list.length > 0}}
            {{each list as item i}}
@@ -45,7 +63,7 @@
 						</div>
 					</div>
 					<div class="bd flex-1">
-						<div class="tit tit-fs18">{{item.nickname}} · 第{{item | getGenerationStr}}代</div>
+						<div class="tit tit-fs18">{{item.dogname}} · 第{{item | getGenerationStr}}代</div>
 						<div class="pri-box">售价 = {{item.amount}} {{item.currency}}</div>
 						<div class="time">1小时前</div>
 					</div>
