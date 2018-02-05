@@ -59,16 +59,38 @@ module.exports = {
       id:id
     })
   },
-  //更新小狗到某个用户名下
-  updateDogToOwner: async function(id,address,owner,source){
+  //address用户购买小狗
+  buyDog: async function(id,address,owner,source){
 	  app.validate('string', address, {length: { minimum: 1, maximum: 128 }})
 	  let obj = await app.model.Dog.findOne({ condition: { id: id } })
 	  if (!obj) return 'Dog not found';
+	  if (obj.status!=3) return 'Dog Status is not saleing';
 	    
 	  app.sdb.update('Dog', {
 		  address: address,
 		  owner: owner||'',
-		  source: source||'1'
+		  amount:null,
+		  pairamount:null,
+		  status:2,
+		  source: '2'
+	  },{
+	      id:id
+	  })
+  },
+  //address用户转让小狗给toAddress
+  assignDog: async function(id,address,toAddress,owner,source){
+	  app.validate('string', toAddress, {length: { minimum: 1, maximum: 128 }})
+	  let obj = await app.model.Dog.findOne({ condition: { id: id } })
+	  if (!obj) return 'Dog not found';
+	  if (obj.status!=3) return 'Dog Status is not saleing';
+	    
+	  app.sdb.update('Dog', {
+		  address: toAddress,
+		  owner: owner||'',
+		  amount:null,
+		  pairamount:null,
+		  status:2,
+		  source:'3'
 	  },{
 	      id:id
 	  })
@@ -88,7 +110,7 @@ module.exports = {
 	  })
   },
   //我的小狗开始配对(只有常规状态下才能配对)
-  updateDogStartPair: async function(id,pid){
+  startPair: async function(id,pid){
 	  let myDog = await app.model.Dog.findOne({ condition: { id: id } })
 	  if (!myDog) return 'Dog not found';
 	  if (myDog.status!=2) return 'Dog Status is not normal';
@@ -112,7 +134,7 @@ module.exports = {
 	  })
   },
   //我的小狗结束配对
-  updateDogEndPair: async function(id,pid){
+  endPair: async function(id,pid){
 	  let myDog = await app.model.Dog.findOne({ condition: { id: id } })
 	  if (!myDog) return 'Dog not found';
 	  let pairDog = await app.model.Dog.findOne({ condition: { id: pid } })
