@@ -31,14 +31,16 @@
 					<a href="" class="g-c2-float flex box">
 						<div class="hd img-w-100">
 							<div class="radius-3">
-								<img src="images/img-02.png" class="img" />
+								<img src="{{item.picurl}}" class="img" />
 							</div>
 						</div>
 						<div class="bd flex-1 bd-buy">
-							<div class="tit tit-fs18">Hobbit · 第一代</div>
-							<div class="pri-box">售价 = 999 CAT</div>
+							<div class="tit tit-fs18">{{item.dogname}} · 第{{item | getGenerationStr}}代</div>
+							<div class="pri-box">售价 = {{item.amount}} {{item.currency}}</div>
 							<div class="time">1小时前</div>
-							<div class="btn btn-buy bgc-ffb04f radius-50 poa right">出售中</div>
+                            {{if item.status==3}}
+							    <div class="btn btn-buy bgc-ffb04f radius-50 poa right">出售中</div>
+                            {{/if}}
 						</div>
 					</a>
 				</li>      
