@@ -112,6 +112,8 @@ module.exports = {
 	  app.sdb.update('Dog',{pairstarttime: (new Date()).toLocaleString()},{id:id})
 	  app.sdb.update('Dog',{pairprevtime: (new Date()).toLocaleString()},{id:id})
 	  app.sdb.update('Dog',{status: 4},{id:id})
+	  
+	  app.sdb.update('Dog',{status: 4},{id:pid})
   },
   //我的小狗结束配对
   endPair: async function(id,pid){
