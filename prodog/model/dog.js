@@ -43,7 +43,7 @@ module.exports = {
       type: 'Number'
     },
     {
-      name: 'currency ',//价格单位
+      name: 'currency',//价格单位
       type: 'String',
       length: 16,
       default:'XAS'
