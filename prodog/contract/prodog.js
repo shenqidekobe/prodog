@@ -10,10 +10,18 @@ module.exports = {
     app.sdb.lock('publishDog@' + picode)
     let exists = await app.model.Dog.exists({ picode: picode })
     if (exists) return
+    if(dogname==null||dogname.length==0){
+    	var $chars = 'ABCDEFGHJKMNPQRSTWXYZ0123456789';
+		var maxPos = $chars.length;
+		dogname = '';
+		for (var i = 0; i < 6; i++) {
+			dogname += $chars.charAt(Math.floor(Math.random() * maxPos));
+		}
+    }
     
     app.sdb.create('Dog', {
       id: app.autoID.increment('dog_max_id'),
-      dogname: dogname||'',
+      dogname: dogname+app.autoID.increment('dogname_id'),
       address: address||'',
       genes: genes || '',
       picode: picode || '',
@@ -26,21 +34,13 @@ module.exports = {
     })
   },
   //修改小狗的基本信息
-  updateDog: async function (id,amount,owner,isold,soldtime,
-		  ispair,pairamount,paircount,pairtime,culturetime,israre,status) {
+  updateDog: async function (id,amount,owner,israre,status) {
     let obj = await app.model.Dog.findOne({ id: id })
     if (!obj) return 'Dog not found';
     
     app.sdb.update('Dog', {
       amount: amount || obj.amount,
       owner: owner||obj.owner,
-      isold: isold||obj.isold,
-      soldtime: soldtime||obj.soldtime,
-      ispair: ispair||obj.ispair,
-      pairamount: pairamount||obj.pairamount,
-      paircount: paircount||obj.paircount,
-      pairtime: pairtime||obj.pairtime,
-      culturetime: culturetime||obj.culturetime,
       israre: israre||obj.israre,
       status: status||obj.status
     },{
