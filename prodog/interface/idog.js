@@ -42,6 +42,12 @@ app.route.post('/pair/dogs', async (req) => {
   let res = await getDogs(query)
   return res
 })
+//可抽奖的狗
+app.route.get('/lottery/dogs', async (req) => {
+  let query = req.query
+  let res = await getDogs(query)
+  return res
+})
 //我的小狗
 app.route.post('/info/dogs', async (req) => {
   let query = req.query
