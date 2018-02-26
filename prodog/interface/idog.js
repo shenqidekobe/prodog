@@ -6,6 +6,7 @@ async function getDogs(query) {
   let condition = {}
   if (isDefined(query.generation)) condition.generation = query.generation
   if (isDefined(query.address)) condition.address = query.address
+  if (isDefined(query.status)) condition.status = query.status
   if (isDefined(query.isold)) condition.isold = query.isold
   if (isDefined(query.ispair)) condition.ispair = query.ispair
   if (isDefined(query.israre)) condition.ispair = query.israre

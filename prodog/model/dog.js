@@ -10,9 +10,8 @@ module.exports = {
     },
     {
         name: 'status',//状态{1:待领取；2:常规；3:出售中；4:生育中}
-        type: 'String',
-        length:16,
-        default:'1'
+        type: 'Number',
+        default:1
     },
     {
         name: 'source',//来源{1:抽奖所得；2:购买的；3:转让的；4:繁殖的}
